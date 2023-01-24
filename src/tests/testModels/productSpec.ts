@@ -2,7 +2,7 @@ import { Product, ProductStore } from '../../models/product';
 
 const productStore = new ProductStore();
 
-describe('Test for ProductStore model', () => {
+describe('Test suite for ProductStore model', () => {
   it('getProducts method should be defined', () => {
     expect(productStore.getProducts).toBeDefined();
   });
@@ -17,7 +17,7 @@ describe('Test for ProductStore model', () => {
   });
   it('getProducts method should get all products from the database', async () => {
     const products: Product[] = await productStore.getProducts();
-    expect(products.length).toEqual(0);
+    expect(products.length).toEqual(1);
   });
   it('createProduct method should create a new product', async () => {
     const product: Product = {
@@ -44,6 +44,6 @@ describe('Test for ProductStore model', () => {
   it('deleteProduct method should delete a single product from the datbase based on its id', async () => {
     await productStore.deleteProduct(2);
     const allProducts = await productStore.getProducts();
-    expect(allProducts.length).toEqual(0);
+    expect(allProducts.length).toEqual(1);
   });
 });

@@ -2,7 +2,7 @@ import { User, UserStore } from '../../models/user';
 
 const userStore = new UserStore();
 
-describe('Test for UserStore model', () => {
+describe('Test suite for UserStore model', () => {
   it('Expect the getUsers method to be defined', () => {
     expect(userStore.getUsers).toBeDefined();
   });

@@ -63,7 +63,7 @@ export class OrderStore {
     try {
       // @ts-ignore
       const conn = await client.connect();
-      const sql = 'DELETE FROM products where id=($1)';
+      const sql = 'DELETE FROM orders where id=($1)';
       // Get the order to be deleted before deleting it.
       const order = this.getSingleOrder(id);
       const result = await conn.query(sql, [id]);

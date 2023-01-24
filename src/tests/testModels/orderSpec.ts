@@ -4,7 +4,7 @@ import { Product, ProductStore } from '../../models/product';
 
 const store = new OrderStore();
 
-describe('Test for OrderStore model', () => {
+describe('Test suite for OrderStore model', () => {
   it('getOrders method should be defined', () => {
     expect(store.getOrders).toBeDefined();
   });
@@ -81,9 +81,9 @@ describe('Test for OrderStore model', () => {
     });
   });
 
-  it('deleteOrder method should delete a single product from the datbase', async () => {
+  it('deleteOrder method should delete an order from the datbase', async () => {
     await store.deleteOrder(1);
     const allOrders = await store.getOrders();
-    expect(allOrders.length).toEqual(1);
+    expect(allOrders.length).toEqual(0);
   });
 });
