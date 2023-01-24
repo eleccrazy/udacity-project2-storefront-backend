@@ -5,38 +5,46 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index (GET `/api/products`)
+- Show  (GET `/api/products/id`)
+- Create (POST `/api/products`) [token required]
+- Delete (DELETE `/api/products`) [token required]
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index (GET `/api/users`) [token required]
+- Show (GET `/api/users/id`) [token required]
+- Create (POST `/api/users`)
+- Delete (DELETE `/api/users/id`) [token required]
+- Current orders by the user (GET `/api/users/id/orders`) [token required]
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Index (GET `/api/orders`) [token required]
+- Show (GET `/api/orders/id`) [token required]
+- Create (POST `/api/orders`) [token required]
+- Delete (DELETE `/api/orders/id`) [token required]
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+Table: *products*
+- id `SERIAL PRIMARY KEY`
+- name `VARCHAR`
+- price `INTEGER`
 
 #### User
-- id
-- firstName
-- lastName
-- password
+Table: *users*
+- id `SERIAL PRIMARY KEY`
+- username `VARCHAR`
+- first_name `VARCHAR`
+- last_name `VARCHAR`
+- password_digest `VARCHAR`
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+Table: *orders*
+- id `SERIAL PRIMARY KEY`
+- user_id `INTEGER` `REFERENCES users(id) ON DELETE CASCADE`
+- status `VARCHAR`
 
+Table: *order_products*
+- order_id `INTEGER` `REFERENCES orders(id) ON DELETE CASCADE` 
+- product_id `INTEGER` `REFERENCES products(id) ON DELETE CASCADE`
+- quantity `INTEGER`
